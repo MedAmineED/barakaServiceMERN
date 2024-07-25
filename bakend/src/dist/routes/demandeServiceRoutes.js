@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const DemandeServiceController_1 = require("../controllers/DemandeServiceController");
+const demandeServiceRoutes = (0, express_1.Router)();
+demandeServiceRoutes.post('/demande-services', DemandeServiceController_1.createDemandeService);
+demandeServiceRoutes.get('/demande-services', DemandeServiceController_1.getAllDemandeServices);
+demandeServiceRoutes.get('/demande-services/:id', DemandeServiceController_1.getDemandeServiceById);
+demandeServiceRoutes.put('/demande-services/:id', DemandeServiceController_1.updateDemandeService);
+demandeServiceRoutes.delete('/demande-services/:id', DemandeServiceController_1.deleteDemandeService);
+exports.default = demandeServiceRoutes;

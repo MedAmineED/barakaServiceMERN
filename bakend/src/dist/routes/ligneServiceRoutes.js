@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const LigneServiceController_1 = require("../controllers/LigneServiceController");
+const ligneServicesRoutes = (0, express_1.Router)();
+ligneServicesRoutes.post('/ligne-services', LigneServiceController_1.createLigneServices);
+ligneServicesRoutes.get('/ligne-services', LigneServiceController_1.getAllLigneServices);
+ligneServicesRoutes.get('/ligne-services/:id', LigneServiceController_1.getLigneServicesById);
+ligneServicesRoutes.put('/ligne-services/:id', LigneServiceController_1.updateLigneServices);
+ligneServicesRoutes.delete('/ligne-services/:id', LigneServiceController_1.deleteLigneServices);
+exports.default = ligneServicesRoutes;

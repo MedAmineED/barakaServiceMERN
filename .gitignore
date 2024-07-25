@@ -1,0 +1,7 @@
+# Ignore node_modules directories
+node_modules/
+front1
+
+# Ignore .env files
+.env
+

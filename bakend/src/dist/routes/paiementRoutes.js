@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const PaiementController_1 = require("../controllers/PaiementController");
+const paiementRoutes = (0, express_1.Router)();
+paiementRoutes.post('/paiements', PaiementController_1.createPaiement);
+paiementRoutes.get('/paiements', PaiementController_1.getAllPaiements);
+paiementRoutes.get('/paiements/:id', PaiementController_1.getPaiementById);
+paiementRoutes.put('/paiements/:id', PaiementController_1.updatePaiement);
+paiementRoutes.delete('/paiements/:id', PaiementController_1.deletePaiement);
+exports.default = paiementRoutes;

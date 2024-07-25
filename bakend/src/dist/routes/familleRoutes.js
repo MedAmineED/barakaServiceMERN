@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const FamilleController_1 = require("../controllers/FamilleController");
+const familleRoutes = (0, express_1.Router)();
+familleRoutes.post('/', FamilleController_1.createFamille);
+familleRoutes.get('/', FamilleController_1.getAllFamilles);
+familleRoutes.get('/:id', FamilleController_1.getFamilleById);
+familleRoutes.put('/:id', FamilleController_1.updateFamille);
+familleRoutes.delete('/:id', FamilleController_1.deleteFamille);
+exports.default = familleRoutes;
