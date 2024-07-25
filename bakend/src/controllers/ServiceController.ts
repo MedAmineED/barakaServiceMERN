@@ -46,7 +46,7 @@ export const getAllServices = async (req: Request, res: Response) => {
                 default:
                     break;
             }
-        }
+        } 
 
         // Fetch total count of services
         const totalCount = await Service.count({

@@ -16,7 +16,7 @@ export const createEmployee = async (req: Request, res: Response) => {
 export const getAllEmployees = async (req: Request, res: Response) => {
     const { searchBy, searchValue, start, rowCpt } = req.query;
 
-    const limit = parseInt(rowCpt as string) || 10; // Default to 10 if not provided
+    const limit = parseInt(rowCpt as string) || null; // Default to 10 if not provided
     const offset = parseInt(start as string) || 0;
 
     try {
@@ -51,7 +51,7 @@ export const getAllEmployees = async (req: Request, res: Response) => {
         // Fetch employees based on the constructed whereCondition
         const employees = await Employee.findAll({
             where: whereCondition,
-            limit,
+            limit : limit? limit : totalCount,
             offset,
         });
 

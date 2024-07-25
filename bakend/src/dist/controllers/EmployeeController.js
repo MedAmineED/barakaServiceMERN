@@ -29,7 +29,7 @@ exports.createEmployee = createEmployee;
 // Get all Employees
 const getAllEmployees = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { searchBy, searchValue, start, rowCpt } = req.query;
-    const limit = parseInt(rowCpt) || 10; // Default to 10 if not provided
+    const limit = parseInt(rowCpt) || null; // Default to 10 if not provided
     const offset = parseInt(start) || 0;
     try {
         let whereCondition = { etat: 1 };
@@ -56,7 +56,7 @@ const getAllEmployees = (req, res) => __awaiter(void 0, void 0, void 0, function
         // Fetch employees based on the constructed whereCondition
         const employees = yield Employee_1.default.findAll({
             where: whereCondition,
-            limit,
+            limit: limit ? limit : totalCount,
             offset,
         });
         const formattedEmployees = employees.map(employee => ({
