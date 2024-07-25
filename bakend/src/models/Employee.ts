@@ -19,6 +19,7 @@ class Employee extends Model {
 
     @Column({
         type: DataType.STRING(12),
+        unique : true
     })
     declare cin: string;
 

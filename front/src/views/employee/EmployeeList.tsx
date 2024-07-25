@@ -18,7 +18,6 @@ const columns = [
   { header: 'Recrutement', accessor: 'recrutement' },
   { header: 'Mobile', accessor: 'mobile' },
   { header: 'Salaire', accessor: 'salaire' },
-  { header: 'Specialité', accessor: 'specialite' },
 ];
 
 const inputFields: InputFieldConfig[] = [
@@ -27,7 +26,6 @@ const inputFields: InputFieldConfig[] = [
   { controlId: 'recrutement', label: 'Recrutement', type: 'date', placeholder: 'Recrutement', col: "col-6" },
   { controlId: 'mobile', label: 'Mobile', type: 'text', placeholder: 'Mobile', col: "col-6" },
   { controlId: 'salaire', label: 'Salaire', type: 'number', placeholder: 'Salaire', col: "col-6" },
-  { controlId: 'specialite', label: 'Spécialité', type: 'number', placeholder: 'Spécialité', col: "col-6" },
 ];
 
 const EmployeeList: FC = () => {
@@ -74,10 +72,6 @@ const EmployeeList: FC = () => {
       return "Salaire must be a non-negative number.";
     }
 
-    const specialite = Number(employee.specialite);
-    if (isNaN(specialite) || specialite < 0) {
-      return "Spécialité must be a non-negative number.";
-    }
 
 
     return null;
@@ -90,6 +84,7 @@ const EmployeeList: FC = () => {
         throw new Error(validationError);
       }
       await EmployeeServices.UpdateEmployee(ApiUrls.EMPLOYEE, id, employee);
+      await fetchEmployeeList(0, 50);
       console.log("Employee edited successfully.");
     } catch (error) {
       console.error("Error editing employee:", error);
@@ -133,7 +128,6 @@ const EmployeeList: FC = () => {
     try {
       console.log("employee data :", numericData);
       await addEmployee(numericData as Employee);
-      await fetchEmployeeList(0, 50);
     } catch (error) {
       console.error("Error adding employee:", error);
     }

@@ -21,6 +21,7 @@ __decorate([
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.STRING(12),
+        unique: true
     }),
     __metadata("design:type", String)
 ], Employee.prototype, "cin", void 0);
