@@ -6,6 +6,7 @@ import ServiceList from "../views/servicesview/ServiceList";
 import NavBarCmp from "../components/NavBarCmp";
 import { useRoutes, RouteObject } from "react-router-dom";
 import EmployeeList from "../views/employee/EmployeeList";
+import DemandeService from "../views/demandeservice/DemandeService";
 
 const Router: React.FC = () => {
   const routes: RouteObject[] = [
@@ -28,6 +29,10 @@ const Router: React.FC = () => {
         {
           path: "listeemployee",
           element: <EmployeeList />,
+        },
+        {
+          path: "demandeservice",
+          element: <DemandeService />,
         },
       ],
     },

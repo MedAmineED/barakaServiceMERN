@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, {  useState } from 'react';
-import { Modal, Button, Form, InputGroup } from 'react-bootstrap';
+import { Form, InputGroup } from 'react-bootstrap';
 import './style.css'; // We'll create this CSS file for custom styles
 import { InputFieldConfig } from 'src/util/types';
+import CustomModal from '../../components/customModal/CustomModal';
 
 
 
@@ -14,35 +15,7 @@ interface InputModalProps {
 }
 
 const InputModal: React.FC<InputModalProps> = ({ title, inputFields, onSave, textButton }) => {
-  const [show, setShow] = useState(false);
   const [formData, setFormData] = useState<{ [key: string]: any }>({});
-
-
-
-
-
-  const handleClose = () =>{
-        setShow(false);
-        resetFormData();
-    };
-  const handleShow = () => setShow(true);
-
-  const resetFormData = () => {
-    const newFormData: { [key: string]: any } = {};
-  
-    for (const key in formData) {
-      if (Object.prototype.hasOwnProperty.call(formData, key)) {
-        // Determine the type of the value and set default
-        if (typeof formData[key] === 'number') {
-          newFormData[key] = 0; // Set numeric values to 0
-        } else {
-          newFormData[key] = ''; // Set other types to empty string
-        }
-      }
-    }
-  
-    setFormData(newFormData);
-  };
 
 
   const handleChange = (controlId: string, value: any) => {
@@ -61,23 +34,7 @@ const InputModal: React.FC<InputModalProps> = ({ title, inputFields, onSave, tex
   };
 
   return (
-    <div>
-      <Button className='btn btn-primary add-btn' variant="primary" onClick={handleShow}>
-        {textButton}
-      </Button>
-
-      <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
-        centered
-        className="compact-modal"
-      >
-        <Modal.Header closeButton>
-          <Modal.Title className="h5">{title}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="p-2" style={{ maxHeight: '70vh', overflowY: 'auto' }}>
+        <CustomModal onSave={handleSave} textButton={textButton} title={title}>
           <Form className="compact-form">
             <div className="row g-1">
               {inputFields.map((field, index) => (
@@ -126,17 +83,7 @@ const InputModal: React.FC<InputModalProps> = ({ title, inputFields, onSave, tex
               ))}
             </div>
           </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="outline-secondary" size="sm" onClick={handleClose}>
-            Fermer
-          </Button>
-          <Button variant="primary" size="sm" onClick={handleSave}>
-            Enregistrer
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </div>
+        </CustomModal>
   );
 };
 

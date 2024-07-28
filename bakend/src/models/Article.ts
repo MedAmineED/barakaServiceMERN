@@ -18,10 +18,10 @@ import Famille from "./Famille";
 
  @Table ({timestamps : true, tableName : "tarticle", modelName : "Article"})
  class Article extends Model {
+    @PrimaryKey
+    @AutoIncrement
     @Column({
-            primaryKey : true,
-            type : DataType.INTEGER,
-            autoIncrement: true})
+            type : DataType.INTEGER})
     declare id : number;
     
 

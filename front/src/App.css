@@ -109,6 +109,21 @@ input:focus, select:focus {
   box-shadow: none !important;
   border: 2px solid #daf7a6 !important;
 }
+
+.custom-btn {
+  font-size:  0.9em;
+  background-color: #b7b67a;
+  color: #C01635;
+  border: 2px solid #C01635;
+  font-weight: bolder;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+.custom-btn:hover {
+  color: white;
+  background-color: #C01635;
+  border: 2px solid #daf7a6;
+  transition: 0.3s;
+}
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/

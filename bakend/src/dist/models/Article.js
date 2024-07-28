@@ -17,10 +17,10 @@ const Famille_1 = __importDefault(require("./Famille"));
 let Article = class Article extends sequelize_typescript_1.Model {
 };
 __decorate([
+    sequelize_typescript_1.PrimaryKey,
+    sequelize_typescript_1.AutoIncrement,
     (0, sequelize_typescript_1.Column)({
-        primaryKey: true,
-        type: sequelize_typescript_1.DataType.INTEGER,
-        autoIncrement: true
+        type: sequelize_typescript_1.DataType.INTEGER
     }),
     __metadata("design:type", Number)
 ], Article.prototype, "id", void 0);

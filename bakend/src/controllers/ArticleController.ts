@@ -5,10 +5,12 @@ import { Op } from 'sequelize';
 
 // Create an Article
 export const createArticle = async (req: Request, res: Response) => {
+    console.log(req.body);
     try {
         const article = await Article.create(req.body);
         res.status(201).json(article);
     } catch (error) {
+        console.log(error);
         res.status(500).json({ error: 'Failed to create article' });
     }
 };

@@ -15,7 +15,7 @@ const columns = [
   { header: 'N°', accessor: 'index' },
   { header: 'CIN', accessor: 'cin' },
   { header: 'Nom', accessor: 'nom' },
-  { header: 'Recrutement', accessor: 'recrutement' },
+  { header: 'Date de Recrutement', accessor: 'recrutement' },
   { header: 'Mobile', accessor: 'mobile' },
   { header: 'Salaire', accessor: 'salaire' },
 ];
@@ -200,7 +200,7 @@ const EmployeeList: FC = () => {
                     aria-describedby="search-addon" />
                   <button
                     onClick={() => { handleSearch() }}
-                    className="btn btn-outline-primary">Rechercher</button>
+                    className="btn custom-btn btn-outline-primary">Rechercher</button>
                 </div>
               </div>
             </div>

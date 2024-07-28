@@ -27,7 +27,7 @@ const NavBarCmp: React.FC = () => {
                     <Nav className="ms-auto"> {/* ms-auto: margin-start auto */}
                         <Nav.Link onClick={()=> {navigateTo("/accueil")}}>Accueil</Nav.Link>
                         <Nav.Link onClick={()=> {navigateTo("/listearticle")}}>Articles</Nav.Link>
-                        <Nav.Link onClick={()=> {navigateTo("/accueil")}}>Lavage</Nav.Link>
+                        <Nav.Link onClick={()=> {navigateTo("/demandeservice")}}>Demande service</Nav.Link>
                         <Nav.Link onClick={()=> {navigateTo("/accueil")}}>Devis</Nav.Link>
                         <Nav.Link onClick={()=> {navigateTo("/accueil")}}>Liste des Factures</Nav.Link>
                         <Nav.Link onClick={()=> {navigateTo("/listeservice")}}>Services</Nav.Link>

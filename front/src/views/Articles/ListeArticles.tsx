@@ -299,7 +299,7 @@ const ListeArticles: FC = () => {
                       aria-describedby="search-addon" />
                   <button 
                         onClick={()=> {handleSearch()}}
-                        className="btn btn-outline-primary">Rechercher</button>
+                        className="btn custom-btn btn-outline-primary">Rechercher</button>
                 </div>
               </div>
               

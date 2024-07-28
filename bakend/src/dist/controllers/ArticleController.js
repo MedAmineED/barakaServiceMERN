@@ -18,11 +18,13 @@ const Famille_1 = __importDefault(require("../models/Famille"));
 const sequelize_1 = require("sequelize");
 // Create an Article
 const createArticle = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(req.body);
     try {
         const article = yield Article_1.default.create(req.body);
         res.status(201).json(article);
     }
     catch (error) {
+        console.log(error);
         res.status(500).json({ error: 'Failed to create article' });
     }
 });
