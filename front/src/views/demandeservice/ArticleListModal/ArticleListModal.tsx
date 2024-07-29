@@ -68,7 +68,7 @@ const ArticleListModal: FC<ArticleModalProps> = ({
 
   return (
     <CustomModal
-      className="special-modal"
+      className="special-modal" 
       onSave={() => {
         onSaveItems();
       }}

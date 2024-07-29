@@ -13,10 +13,10 @@ import Service from "./Service";
 import Article from "./Article";
 
 @Table({
-    tableName: "tligneservices",
-    modelName: "LigneServices"
+    tableName: "tlignedemande",
+    modelName: "LigneDemande"
 })
-class LigneServices extends Model {
+class LigneDemande extends Model {
     @PrimaryKey
     @AutoIncrement
     @Column(DataType.INTEGER)
@@ -81,4 +81,4 @@ class LigneServices extends Model {
     declare demandeService: DemandeService;
 }
 
-export default LigneServices;
+export default LigneDemande;

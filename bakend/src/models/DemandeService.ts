@@ -8,7 +8,7 @@ import {
     HasMany
 } from "sequelize-typescript";
 import Paiement from "./Paiement";
-import LigneServices from "./LigneService";
+import LigneDemande from "./LigneDemande";
 
 @Table({
     timestamps: false, 
@@ -27,7 +27,7 @@ class DemandeService extends Model {
     })
     declare date_demande: Date;
 
-    @Column({
+    @Column({ 
         type: DataType.STRING,
         allowNull: false
     })
@@ -46,13 +46,13 @@ class DemandeService extends Model {
     declare employer: string;
 
     @Column({
-        type: DataType.TIME,
+        type: DataType.STRING,
         allowNull: false
     })
     declare heure_deb: string;  // Use string for TIME data type
 
     @Column({
-        type: DataType.TIME,
+        type: DataType.STRING,
         allowNull: false
     })
     declare heure_fin: string;  // Use string for TIME data type
@@ -73,7 +73,7 @@ class DemandeService extends Model {
         type: DataType.DOUBLE,
         allowNull: false
     })
-    declare prixTTC: number;
+    declare prix_ttc: number;
 
     @Column({
         type: DataType.INTEGER,
@@ -87,8 +87,8 @@ class DemandeService extends Model {
     })
     declare marque: string;
 
-    @HasMany(() => LigneServices)
-    declare articles: LigneServices[];
+    @HasMany(() => LigneDemande)
+    declare lignedemande: LigneDemande[];
 
     @HasMany(()=> Paiement)
     declare paiement : Paiement;

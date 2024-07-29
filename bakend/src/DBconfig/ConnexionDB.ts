@@ -8,7 +8,7 @@ import CategorieService from "../models/CategorieService";
 import Service from "../models/Service";
 import User from "../models/User";
 import DemandeService from "../models/DemandeService";
-import LigneServices from "../models/LigneService";
+import LigneServices from "../models/LigneDemande";
 import Paiement from "../models/Paiement";
 
 // const { Seq } = require('sequelize');

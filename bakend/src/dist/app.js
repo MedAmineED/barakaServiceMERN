@@ -17,7 +17,7 @@ const ConnexionDB_1 = require("./DBconfig/ConnexionDB");
 const categorieServiceRoutes_1 = __importDefault(require("./routes/categorieServiceRoutes"));
 const serviceRoutes_1 = __importDefault(require("./routes/serviceRoutes"));
 const demandeServiceRoutes_1 = __importDefault(require("./routes/demandeServiceRoutes"));
-const ligneServiceRoutes_1 = __importDefault(require("./routes/ligneServiceRoutes"));
+const LigneDemande_1 = __importDefault(require("./routes/LigneDemande"));
 const paiementRoutes_1 = __importDefault(require("./routes/paiementRoutes"));
 const articleRoutes_1 = __importDefault(require("./routes/articleRoutes"));
 const familleRoutes_1 = __importDefault(require("./routes/familleRoutes"));
@@ -36,7 +36,7 @@ app.use((0, cors_1.default)({
 app.use('/api/categories', categorieServiceRoutes_1.default);
 app.use('/api/services', serviceRoutes_1.default);
 app.use('/api/demande-services', demandeServiceRoutes_1.default);
-app.use('/api/ligne-services', ligneServiceRoutes_1.default);
+app.use('/api/ligne-services', LigneDemande_1.default);
 app.use('/api/paiements', paiementRoutes_1.default);
 app.use('/api/articles', articleRoutes_1.default);
 app.use('/api/familles', familleRoutes_1.default);

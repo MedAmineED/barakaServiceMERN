@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 const Paiement_1 = __importDefault(require("./Paiement"));
-const LigneService_1 = __importDefault(require("./LigneService"));
+const LigneDemande_1 = __importDefault(require("./LigneDemande"));
 let DemandeService = class DemandeService extends sequelize_typescript_1.Model {
 };
 __decorate([
@@ -53,14 +53,14 @@ __decorate([
 ], DemandeService.prototype, "employer", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
-        type: sequelize_typescript_1.DataType.TIME,
+        type: sequelize_typescript_1.DataType.STRING,
         allowNull: false
     }),
     __metadata("design:type", String)
 ], DemandeService.prototype, "heure_deb", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
-        type: sequelize_typescript_1.DataType.TIME,
+        type: sequelize_typescript_1.DataType.STRING,
         allowNull: false
     }),
     __metadata("design:type", String)
@@ -85,7 +85,7 @@ __decorate([
         allowNull: false
     }),
     __metadata("design:type", Number)
-], DemandeService.prototype, "prixTTC", void 0);
+], DemandeService.prototype, "prix_ttc", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.INTEGER,
@@ -101,9 +101,9 @@ __decorate([
     __metadata("design:type", String)
 ], DemandeService.prototype, "marque", void 0);
 __decorate([
-    (0, sequelize_typescript_1.HasMany)(() => LigneService_1.default),
+    (0, sequelize_typescript_1.HasMany)(() => LigneDemande_1.default),
     __metadata("design:type", Array)
-], DemandeService.prototype, "articles", void 0);
+], DemandeService.prototype, "lignedemande", void 0);
 __decorate([
     (0, sequelize_typescript_1.HasMany)(() => Paiement_1.default),
     __metadata("design:type", Paiement_1.default)

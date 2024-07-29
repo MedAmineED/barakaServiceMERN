@@ -22,7 +22,7 @@ const CategorieService_1 = __importDefault(require("../models/CategorieService")
 const Service_1 = __importDefault(require("../models/Service"));
 const User_1 = __importDefault(require("../models/User"));
 const DemandeService_1 = __importDefault(require("../models/DemandeService"));
-const LigneService_1 = __importDefault(require("../models/LigneService"));
+const LigneDemande_1 = __importDefault(require("../models/LigneDemande"));
 const Paiement_1 = __importDefault(require("../models/Paiement"));
 // const { Seq } = require('sequelize');
 // const User = require('../models/User');
@@ -36,7 +36,7 @@ const sequelizeConnexion = new sequelize_typescript_1.Sequelize({
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
     port: Number(process.env.DB_PORT),
-    models: [Famille_1.default, Article_1.default, Employee_1.default, CategorieService_1.default, Service_1.default, User_1.default, DemandeService_1.default, LigneService_1.default, Paiement_1.default],
+    models: [Famille_1.default, Article_1.default, Employee_1.default, CategorieService_1.default, Service_1.default, User_1.default, DemandeService_1.default, LigneDemande_1.default, Paiement_1.default],
 });
 const Connection = () => __awaiter(void 0, void 0, void 0, function* () {
     try {

@@ -1,4 +1,4 @@
-import DemandeService from "./DemandeService";
+import DemandeService from "./DemandeServiceEntity";
 
 interface Paiement {
     id_p: number;

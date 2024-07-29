@@ -9,10 +9,10 @@ import {
 
 const demandeServiceRoutes = Router();
 
-demandeServiceRoutes.post('/demande-services', createDemandeService);
-demandeServiceRoutes.get('/demande-services', getAllDemandeServices);
-demandeServiceRoutes.get('/demande-services/:id', getDemandeServiceById);
-demandeServiceRoutes.put('/demande-services/:id', updateDemandeService);
-demandeServiceRoutes.delete('/demande-services/:id', deleteDemandeService);
+demandeServiceRoutes.post('/', createDemandeService);
+demandeServiceRoutes.get('/', getAllDemandeServices);
+demandeServiceRoutes.get('/:id', getDemandeServiceById);
+demandeServiceRoutes.put('/:id', updateDemandeService);
+demandeServiceRoutes.delete('/:id', deleteDemandeService);
 
 export default demandeServiceRoutes;

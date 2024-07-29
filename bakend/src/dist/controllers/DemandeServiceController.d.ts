@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-export declare const createDemandeService: (req: Request, res: Response) => Promise<void>;
+export declare const createDemandeService: (req: Request, res: Response) => Promise<Response<any, Record<string, any>> | undefined>;
 export declare const getAllDemandeServices: (req: Request, res: Response) => Promise<void>;
 export declare const getDemandeServiceById: (req: Request, res: Response) => Promise<void>;
 export declare const updateDemandeService: (req: Request, res: Response) => Promise<void>;

@@ -1,6 +1,6 @@
 import { Model } from "sequelize-typescript";
 import Paiement from "./Paiement";
-import LigneServices from "./LigneService";
+import LigneDemande from "./LigneDemande";
 declare class DemandeService extends Model {
     id_dem: number;
     date_demande: Date;
@@ -11,10 +11,10 @@ declare class DemandeService extends Model {
     heure_fin: string;
     client: string;
     bon_commande: string;
-    prixTTC: number;
+    prix_ttc: number;
     payer: number;
     marque: string;
-    articles: LigneServices[];
+    lignedemande: LigneDemande[];
     paiement: Paiement;
 }
 export default DemandeService;

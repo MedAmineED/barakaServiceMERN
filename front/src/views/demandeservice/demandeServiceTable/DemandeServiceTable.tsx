@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Table, Row, Col } from 'react-bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './style.css';
@@ -9,17 +9,20 @@ interface Column {
   accessor: string;
 }
 
+
 interface DemandeServiceTableProps {
   data: { [key: string]: any; }[];
   columns: Column[];
-  onDelete: (id: number) => void;
-  srv: any
+  srv: any;
+  onDelete: (item : number) => void;
+  getPrixTTC : (ttc : number)=> void
 }
 
 const DemandeServiceTable: FC<DemandeServiceTableProps> = ({ 
   data, 
   columns, 
   onDelete,
+  getPrixTTC
 }) => {
   // Calculate totals
   const totals = {
@@ -28,6 +31,10 @@ const DemandeServiceTable: FC<DemandeServiceTableProps> = ({
     montant_TVA: data.reduce((sum, item) => sum + (item.tax_total || 0), 0),
     montant_TTC: data.reduce((sum, item) => sum + (item.prix_TTC || 0), 0),
   };
+
+  useEffect(()=> {
+    getPrixTTC(totals.montant_TTC);
+  }, [data])
 
   return (
     <div className="table-demande-service">
@@ -45,7 +52,7 @@ const DemandeServiceTable: FC<DemandeServiceTableProps> = ({
             {data.map((item, rowIndex) => (
               <tr key={item.id || rowIndex}>
                 <td className="text-center">
-                  <i onClick={() => onDelete(item.element)} className="bi bi-x-circle text-danger" style={{ cursor: 'pointer' }}></i>
+                  <i onClick={() => onDelete(item)} className="bi bi-x-circle text-danger" style={{ cursor: 'pointer' }}></i>
                 </td>
                 {columns.map((column, colIndex) => (
                   <td key={colIndex} className="text-center">{item[column.accessor]}</td>

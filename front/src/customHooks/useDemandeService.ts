@@ -5,15 +5,15 @@ import Article from '../entities/Article';
 import LigneDemande from '../entities/LigneDemande';
 import  ServiceEntity from '../entities/ServiceEntity';
 
-type Item = ServiceEntity | Article;
+type Item = ServiceEntity | Article | LigneDemande;
 
 const createLigneDemande = (item: Item): LigneDemande => {
   const isService = 'libelle' in item;
   return {
-    demande_srv: item.id || 0,
+    // demande_srv: (item as ServiceEntity | Article).id || 0,
     type: isService ? "service" : "article",
     categorie: (isService ? (item as ServiceEntity).categorie : (item as Article).famille) || "autre",
-    element: item.id || 0,
+    element: (item as ServiceEntity | Article).id || 0,
     reference: isService ? "some_reference" : (item as Article).identification,
     designation: isService ? (item as ServiceEntity).libelle : (item as Article).designation,
     prix: isService ? (item as ServiceEntity).pu : (item as Article).prix_vente,
@@ -32,13 +32,18 @@ export const useDemandeService = () => {
   const [servicesState, setServicesState] = useState<ServiceEntity[]>([]);
   const [articlesState, setArticlesState] = useState<Article[]>([]);
 
+
   const handleItemChange = useCallback((check: boolean, item: Item) => {
-    const stateUpdater = 'libelle' in item ? setServicesState : setArticlesState;
+    const stateUpdater = ((item as ServiceEntity).libelle || (item as LigneDemande).id.type == "service") ? setServicesState : setArticlesState;
     stateUpdater((prevState: any[]) => {
       if (check) {
         return [...prevState, item];
       } else {
-        return prevState.filter(i => i.id !== item.id);
+        return prevState.filter((i) => {
+          const itemId = (item as { [key: string]: any; }).id.element? (item as { [key: string]: any; }).id.element : (item as Article | ServiceEntity).id;
+          console.log(i.id, " and ", itemId)
+          return i.id !== itemId
+        });
       }
     });
   }, []);
@@ -48,7 +53,7 @@ export const useDemandeService = () => {
     setArticlesState([]);
   }, []);
 
-  const ligneDemande = useMemo(() => {
+  const ligneDemandeArr = useMemo(() => {
     return [
       ...servicesState.map(createLigneDemande),
       ...articlesState.map(createLigneDemande)
@@ -58,7 +63,7 @@ export const useDemandeService = () => {
   return {
     servicesState,
     articlesState,
-    ligneDemande,
+    ligneDemandeArr,
     handleItemChange,
     reset
   };

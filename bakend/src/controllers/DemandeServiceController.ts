@@ -1,17 +1,57 @@
 import { Request, Response } from 'express';
 import DemandeService from '../models/DemandeService';
 import Paiement from '../models/Paiement';
-import LigneServices from '../models/LigneService';
-
+import LigneDemande from '../models/LigneDemande';
+import sequelizeConnexion from '../DBconfig/ConnexionDB';
+import { ExecException } from 'child_process';
+ 
 // Create a DemandeService
 export const createDemandeService = async (req: Request, res: Response) => {
+    const transaction = await sequelizeConnexion.transaction();
+
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaa")
+    console.log("req body : ",req.body)
+
     try {
-        const demandeService = await DemandeService.create(req.body, {
-            include: [Paiement, LigneServices] // Include associations if needed
-        });
+        const now = new Date();
+        const date = now.toISOString().split('T')[0];
+        const dateTime = `${date}`;
+
+        const { lignedemande, ...demandeServiceData } = req.body;
+
+        console.log("before check if lignes empty : ", lignedemande);
+        // Check if lignedemande is not empty
+        if (!lignedemande || lignedemande.length === 0) {
+            console.log({ error: 'LigneDemande cannot be empty' })
+            return res.status(400).json({ error: 'LigneDemande cannot be empty' });
+        }
+
+        // Create DemandeService without including Paiement initially
+        const demandeService = await DemandeService.create(
+            { ...demandeServiceData, date_demande: dateTime },
+            { include: [LigneDemande], transaction }
+        );
+
+        console.log("before adding lignes : ", lignedemande);
+        // Add LigneDemandes
+        for (const ligne of lignedemande) {
+            console.log("ligne : ", ligne);
+            ligne.demande_srv = demandeService.id_dem; // Set foreign key
+            await LigneDemande.create(ligne, { transaction });
+        }
+
+        await transaction.commit();
         res.status(201).json(demandeService);
     } catch (error) {
-        res.status(500).json({ error: 'Failed to create demandeService' });
+        await transaction.rollback();
+        // Handle unknown error type
+        if (error instanceof Error) {
+            console.log({ error: 'Failed to create demandeService', details: error.message })
+            res.status(500).json({ error: 'Failed to create demandeService', details: error.message });
+        } else {
+            console.log({ error: 'Failed to create demandeService' })
+            res.status(500).json({ error: 'Failed to create demandeService' });
+        }
     }
 };
 
@@ -19,7 +59,7 @@ export const createDemandeService = async (req: Request, res: Response) => {
 export const getAllDemandeServices = async (req: Request, res: Response) => {
     try {
         const demandeServices = await DemandeService.findAll({
-            include: [Paiement, LigneServices] // Include associations if needed
+            include: [Paiement, DemandeService] // Include associations if needed
         });
         res.status(200).json(demandeServices);
     } catch (error) {
@@ -31,7 +71,7 @@ export const getAllDemandeServices = async (req: Request, res: Response) => {
 export const getDemandeServiceById = async (req: Request, res: Response) => {
     try {
         const demandeService = await DemandeService.findByPk(req.params.id, {
-            include: [Paiement, LigneServices] // Include associations if needed
+            include: [Paiement, DemandeService] // Include associations if needed
         });
         if (demandeService) {
             res.status(200).json(demandeService);

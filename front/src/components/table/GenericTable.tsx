@@ -30,30 +30,42 @@ const GenericTable: FC<GenericTableProps> = ({
   onDelete,
   fetchById,
   onCheckedItemsChange,
-  selectedItems = []
+  selectedItems
 }) => {
   const [checkedItems, setCheckedItems] = useState<{ [key: number]: boolean }>({});
 
   useEffect(() => {
     const newCheckedItems: { [key: number]: boolean } = {};
-    selectedItems.forEach(item => {
-      newCheckedItems[item.id] = true;
-    });
+    if(selectedItems){
+        selectedItems.forEach(item => {
+          newCheckedItems[item.id] = true;
+        });
+    }
     setCheckedItems(newCheckedItems);
+    console.log("checkedItems from use state : ", checkedItems)
   }, [selectedItems]);
 
   const handleCheckboxChange = (item: any) => {
     const isChecked = !checkedItems[item.id];
+    console.log("item from generic table ", item);
+    console.log("item.id from generic table ", item.id);
+    console.log("isChecked from generic table ", isChecked);
+    console.log("checkedItems from generic table ", checkedItems);
+    console.log("checkedItems id from generic table ", checkedItems[item.id]);
+    console.log("selectedItems from generic table ", selectedItems);
     if (onCheckedItemsChange) {
       onCheckedItemsChange(isChecked, item);
     }
   };
-
+ 
   // Sort data so that selected items appear first
-  const sortedData = [...data].sort((a, b) => {
-    const aSelected = selectedItems.some(item => item.id === a.id);
-    const bSelected = selectedItems.some(item => item.id === b.id);
-    return bSelected - aSelected;
+  const sortedData = [...data].sort((a, b) : number => {
+    if(selectedItems){
+      const aSelected = selectedItems.some(item => item.id === a.id);
+      const bSelected = selectedItems.some(item => item.id === b.id);
+      return (bSelected - aSelected);
+    }
+    return 0;
   });
 
   return (

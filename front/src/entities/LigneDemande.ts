@@ -1,8 +1,10 @@
-import DemandeService from "./DemandeService";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import DemandeService from "./DemandeServiceEntity";
 
 interface LigneDemande {
+    [x: string]: any;
     id_ligne?: number;
-    demande_srv: number;
+    demande_srv?: number;
     type: string;
     categorie: string;
     element: number;
